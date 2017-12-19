@@ -7,16 +7,20 @@ class KatanaCharacter {
     this.xPosition = xPosition;
     this.yPosition = yPosition;
     this.fallSpeed = fallSpeed;
+    this.changeInterval = round(random(1, 20));
   }
 
   randomSymbol() {
-    this.value = String.fromCharCode(0x30A0 + round(random(0,96)));
+    if (frameCount % this.changeInterval == 0) {
+      this.value = String.fromCharCode(0x30A0 + round(random(0,96)));
+    }
   }
 
   render() {
     fill(0, 255, 180);
     text(this.value, this.xPosition, this.yPosition);
     this.fall();
+    this.randomSymbol();
   }
 
   fall() {
