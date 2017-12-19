@@ -3,9 +3,10 @@ var specialCharacter;
 
 class KatanaCharacter {
 
-  constructor(xPosition, yPosition) {
+  constructor(xPosition, yPosition, fallSpeed) {
     this.xPosition = xPosition;
     this.yPosition = yPosition;
+    this.fallSpeed = fallSpeed;
   }
 
   randomSymbol() {
@@ -15,6 +16,11 @@ class KatanaCharacter {
   render() {
     fill(0, 255, 180);
     text(this.value, this.xPosition, this.yPosition);
+    this.fall();
+  }
+
+  fall() {
+    this.yPosition += this.fallSpeed;
   }
 }
 
@@ -27,7 +33,7 @@ function setup() {
   var centerX = window.innerWidth / 2;
   var centerY = window.innerHeight / 2;
 
-  specialCharacter = new KatanaCharacter(centerX, centerY);
+  specialCharacter = new KatanaCharacter(centerX, centerY, 5);
   specialCharacter.randomSymbol();
   textSize(fontSize);
 }
