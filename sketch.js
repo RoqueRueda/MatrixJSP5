@@ -17,7 +17,7 @@ class KatanaCharacter {
   }
 
   render() {
-    fill(0, 255, 180);
+    fill(0, 209, 255);
     text(this.value, this.xPosition, this.yPosition);
     this.fall();
     this.randomSymbol();
@@ -34,8 +34,8 @@ class CharacterStream {
     this.x = x;
     this.y = y;
     this.characters = [];
-    this.size = round(random(5,15));
-    this.moveSpeed = round(random(1,6));
+    this.size = round(random(5,35));
+    this.moveSpeed = round(random(1,9));
   }
 
   generateCharacters() {
@@ -59,7 +59,7 @@ function setup() {
   var x = 0;
   var y = 0;
   for(let i = 0; i <= width / fontSize; i++) {
-    const stream = new CharacterStream(x, y);
+    const stream = new CharacterStream(x, random(0, -300));
     stream.generateCharacters();
     arrayOfStreams.push(stream);
     x += fontSize;
@@ -69,7 +69,7 @@ function setup() {
 }
   
 function draw() {
-  background(0);
+  background(0, 100);
   arrayOfStreams.forEach(
     function(stream) {
       stream.render(); 
