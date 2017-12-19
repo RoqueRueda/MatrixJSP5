@@ -20,7 +20,7 @@ class KatanaCharacter {
   }
 
   fall() {
-    this.yPosition += this.fallSpeed;
+    this.yPosition = (this.yPosition > height) ? 0 : this.yPosition += this.fallSpeed ;
   }
 }
 
@@ -39,5 +39,6 @@ function setup() {
 }
   
 function draw() {
+  background(0);
   specialCharacter.render();
 }
