@@ -1,22 +1,22 @@
 var fontSize = 60;
 var specialCharacter;
 
-function KatanaCharacter (xPosition, yPosition) {
-  // Variables
-  this.xPosition = xPosition;
-  this.yPosition = yPosition;
+class KatanaCharacter {
 
-  this.randomSymbol = function () {
+  constructor(xPosition, yPosition) {
+    this.xPosition = xPosition;
+    this.yPosition = yPosition;
+  }
+
+  randomSymbol() {
     this.value = String.fromCharCode(0x30A0 + round(random(0,96)));
   }
 
-  this.render = function() {
-    // color rgb
+  render() {
     fill(0, 255, 180);
     text(this.value, this.xPosition, this.yPosition);
   }
 }
-
 
 function setup() {
   // are to draw
