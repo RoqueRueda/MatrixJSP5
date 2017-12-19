@@ -1,5 +1,5 @@
-var fontSize = 60;
-var specialCharacter;
+var fontSize = 20;
+var characterStream;
 
 class KatanaCharacter {
 
@@ -28,21 +28,42 @@ class KatanaCharacter {
   }
 }
 
+class CharacterStream {
+
+  constructor() {
+    this.characters = [];
+    this.size = round(random(5,15));
+    this.moveSpeed = random(1,6);
+  }
+
+  generateCharacters() {
+    var y = 0;
+    var x = width / 2;
+
+    for(let i = 0; i<= this.size; i++) {
+      var char = new KatanaCharacter(x, y, this.moveSpeed);
+      char.randomSymbol();
+      this.characters.push(char);
+      y -= fontSize;
+    }
+  }
+
+  render() {
+    this.characters.forEach((char) => { char.render() })
+  }
+
+}
+
 function setup() {
-  // are to draw
   createCanvas(window.innerWidth, window.innerHeight);
-  // black background
   background(0);
 
-  var centerX = window.innerWidth / 2;
-  var centerY = window.innerHeight / 2;
-
-  specialCharacter = new KatanaCharacter(centerX, centerY, 5);
-  specialCharacter.randomSymbol();
+  characterStream = new CharacterStream();
+  characterStream.generateCharacters();
   textSize(fontSize);
 }
   
 function draw() {
   background(0);
-  specialCharacter.render();
+  characterStream.render();
 }
